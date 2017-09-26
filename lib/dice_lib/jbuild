@@ -1,0 +1,6 @@
+(jbuild_version 1)
+
+(library
+	((name DiceLib)
+	 (public_name dicelib)
+	 (libraries (containers))))

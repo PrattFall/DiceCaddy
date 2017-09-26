@@ -1,0 +1,10 @@
+(jbuild_version 1)
+
+(executable
+	((name test)
+	 (libraries (containers postgresql ounit dicelib))))
+
+(install
+	((section bin)
+	 (files ((test.exe as test_dice_server)))))
+

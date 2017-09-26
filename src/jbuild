@@ -1,0 +1,9 @@
+(jbuild_version 1)
+
+(executable
+	((name Main)
+	 (libraries (containers postgresql lwt cohttp.lwt yojson dicelib))))
+
+(install
+	((section bin)
+	 (files ((Main.exe as dice_server)))))
