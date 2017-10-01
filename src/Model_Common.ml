@@ -1,8 +1,6 @@
 open Containers
 open CCList.Infix
 
-module P = Postgresql
-
 let for_all_rows conn map_f data  =
   let num_rows = data#ntuples in
   if num_rows = 0

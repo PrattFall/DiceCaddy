@@ -78,4 +78,5 @@ bin: [
 ]
 doc: [
   "_build/install/default/doc/dicelib/README.md"
+  "_build/install/default/doc/dicelib/LICENSE"
 ]

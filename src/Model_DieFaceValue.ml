@@ -1,7 +1,7 @@
-module P = Postgresql
-
 open DiceLib
 open Containers
+
+module P = Postgresql
 
 type connection = P.connection
 
@@ -24,8 +24,8 @@ let build_row conn die_faces_data =
   match die_faces_data with
   | Ok die_faces ->
     die_faces
-    |> CommonM.for_all_rows conn (build_row_inner die_faces)
-    |> CommonM.separate
+    |> Model_Common.for_all_rows conn (build_row_inner die_faces)
+    |> Model_Common.separate
   | Error e -> QueryResult.error e
 
 let get ~face_id conn =

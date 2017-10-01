@@ -14,7 +14,7 @@ let make_die_face_group conn groups_data =
     (DB.get_field row "id" groups) >>= (fun id_string ->
       let length  = int_of_string length_string in
       let face_id = int_of_string id_string in
-      let (values, errors) = DieFaceValueM.get face_id conn in
+      let (values, errors) = Model_DieFaceValue.get face_id conn in
 
       Ok (DieFaceGroup.make length values, errors);
     ))
@@ -23,8 +23,8 @@ let make_die_face_group conn groups_data =
   match groups_data with
   | Ok groups ->
     groups
-    |> CommonM.for_all_rows conn (build_row groups)
-    |> CommonM.separate
+    |> Model_Common.for_all_rows conn (build_row groups)
+    |> Model_Common.separate
     |> QueryResult.combine_result_errors
   | Error e -> QueryResult.error e
 
@@ -51,7 +51,7 @@ let insert ~die_id ~amount ~values conn =
     let open Result.Infix in
 
     let insert_value conn face_id value =
-      DieFaceValueM.insert ~face_id ~value conn
+      Model_DieFaceValue.insert ~face_id ~value conn
     in
 
     match
@@ -63,7 +63,7 @@ let insert ~die_id ~amount ~values conn =
     with
     | Ok face_id ->
       List.map (insert_value conn face_id) values
-      |> CommonM.separate
+      |> Model_Common.separate
     | Error e -> QueryResult.error e
   in
 

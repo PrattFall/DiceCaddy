@@ -3,9 +3,9 @@ open CCList.Infix
 
 open DiceLib
 
-type get_result = ((Die.t * Message.t list), Message.t) result list
-
 module P = Postgresql
+
+type get_result = ((Die.t * Message.t list), Message.t) result list
 
 let make_dice conn dice_data =
   let build_row dice row =
@@ -13,7 +13,7 @@ let make_dice conn dice_data =
     (DB.get_field row "id" dice)       >>= (fun id_string ->
     (DB.get_field row "die_name" dice) >>= (fun die_name ->
       let die_id = int_of_string id_string in
-      let faces, errors = DieFaceM.get die_id conn in
+      let faces, errors = Model_DieFace.get die_id conn in
 
       Ok (Die.make die_name ~faces, errors)
     ))
@@ -22,8 +22,8 @@ let make_dice conn dice_data =
   match dice_data with
   | Ok dice ->
     dice
-    |> CommonM.for_all_rows conn (build_row dice)
-    |> CommonM.separate
+    |> Model_Common.for_all_rows conn (build_row dice)
+    |> Model_Common.separate
     |> QueryResult.combine_result_errors
   | Error e -> QueryResult.error e
 
@@ -46,10 +46,7 @@ let insert ~game_id ~name conn =
     "INSERT INTO Die (game_id, die_name) VALUES ($1, $2) RETURNING id;"
   in
 
-  let params = [| string_of_int game_id
-                ; name
-               |]
-  in
+  let params = [| string_of_int game_id; name |] in
 
   match
     conn
