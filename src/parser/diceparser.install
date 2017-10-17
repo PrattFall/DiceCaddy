@@ -1,0 +1,20 @@
+lib: [
+  "_build/install/default/lib/diceparser/META" {"META"}
+  "_build/install/default/lib/diceparser/opam" {"opam"}
+  "_build/install/default/lib/diceparser/DiceParser.cmi"
+  "_build/install/default/lib/diceparser/DiceParser.cmx"
+  "_build/install/default/lib/diceparser/DiceParser.cmt"
+  "_build/install/default/lib/diceparser/DiceParser.ml-gen"
+  "_build/install/default/lib/diceparser/DiceParser__Parser.cmi"
+  "_build/install/default/lib/diceparser/DiceParser__Parser.cmx"
+  "_build/install/default/lib/diceparser/DiceParser__Parser.cmt"
+  "_build/install/default/lib/diceparser/Parser.ml"
+  "_build/install/default/lib/diceparser/DiceParser.cma"
+  "_build/install/default/lib/diceparser/DiceParser.cmxa"
+  "_build/install/default/lib/diceparser/DiceParser.a"
+  "_build/install/default/lib/diceparser/DiceParser.cmxs"
+]
+doc: [
+  "_build/install/default/doc/diceparser/README.md"
+  "_build/install/default/doc/diceparser/LICENSE"
+]

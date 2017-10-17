@@ -72,10 +72,6 @@ lib: [
   "_build/install/default/lib/dicelib/DiceLib.a"
   "_build/install/default/lib/dicelib/DiceLib.cmxs"
 ]
-bin: [
-  "_build/install/default/bin/test_dice_server" {"test_dice_server"}
-  "_build/install/default/bin/dice_server" {"dice_server"}
-]
 doc: [
   "_build/install/default/doc/dicelib/README.md"
   "_build/install/default/doc/dicelib/LICENSE"

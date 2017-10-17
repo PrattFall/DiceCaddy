@@ -1,0 +1,2 @@
+(** @canonical DiceParser.Parser *)
+module Parser = DiceParser__Parser

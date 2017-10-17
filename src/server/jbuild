@@ -2,7 +2,7 @@
 
 (executable
 	((name Main)
-	 (libraries (containers postgresql lwt cohttp.lwt yojson dicelib))))
+	 (libraries (containers postgresql lwt cohttp.lwt yojson dicelib diceparser))))
 
 (install
 	((section bin)

@@ -5,6 +5,7 @@ open Cohttp
 open Cohttp_lwt_unix
 
 open DiceLib
+open DiceParser
 
 let parse_query query =
   "?" ^ query

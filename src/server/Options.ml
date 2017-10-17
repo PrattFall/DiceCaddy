@@ -1,3 +1,5 @@
+open DiceParser
+
 let get =
   (* I can't believe something like this isn't in the standard library *)
   let read_file f =
