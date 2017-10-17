@@ -1,5 +1,0 @@
-B ../../_build/default/lib/dice_lib
-FLG -open DiceLib -w -40
-PKG bytes
-PKG containers
-PKG result
