@@ -1,0 +1,9 @@
+S src/dice
+S src/server
+S test
+
+B _build/src/dice
+B _build/src/server
+B _build/test
+
+PKG containers angstrom ounit Postgresql cohttp lwt yojson
