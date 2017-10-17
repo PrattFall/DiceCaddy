@@ -13,7 +13,7 @@ let num_values side =
 
 let equals face1 face2 =
   List.map2 DieFaceValue.equals face1 face2
-  |> List.fold_left (fun acc x -> acc || x) false
+  |> List.fold_left (||) false
 
 let contains value face =
   List.fold_left
