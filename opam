@@ -1,0 +1,25 @@
+opam-version: "1.2"
+name: "dicecaddy"
+version: "0.0.1"
+maintainer: " <>"
+authors: " <>"
+homepage: "https://github.com/PrattFall/DiceCaddy"
+bug-reports: "https://github.com/PrattFall/DiceCaddy/issues"
+license: "BSD"
+dev-repo: "https://github.com/PrattFall/DiceCaddy.git"
+build: [
+  [make]
+]
+install: [make "install"]
+remove: ["ocamlfind" "remove" "DiceCaddy"]
+depends: [
+  "ocamlfind" {build}
+  "jbuilder" {build}
+  "containers"
+  "postgresql"
+  "lwt"
+  "cohttp"
+  "cohttp-lwt"
+  "ounit"
+  "yojson"
+]
