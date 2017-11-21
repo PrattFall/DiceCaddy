@@ -27,7 +27,7 @@ let to_string result =
     |> String.concat ", "
   in
 
-  show_value result.total ^ " " ^ result.name ^ " (" ^ values ^ ")"
+  show_value (total result) ^ " " ^ result.name ^ " (" ^ values ^ ")"
 
 let add value result =
   { result with values = value :: result.values
