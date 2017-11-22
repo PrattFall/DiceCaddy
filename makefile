@@ -7,4 +7,4 @@ deps:
 	echo "Switching to current OCAML Version..."
 	opam switch 4.05.0
 	echo "Installing Required Packages..."
-	opam install jbuilder containers postgresql lwt cohttp cohttp-lwt ounit
+	opam install jbuilder containers postgresql lwt cohttp cohttp-lwt ounit yojson
