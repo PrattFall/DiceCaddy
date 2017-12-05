@@ -14,7 +14,3 @@ lib: [
   "_build/install/default/lib/diceparser/DiceParser.a"
   "_build/install/default/lib/diceparser/DiceParser.cmxs"
 ]
-doc: [
-  "_build/install/default/doc/diceparser/README.md"
-  "_build/install/default/doc/diceparser/LICENSE"
-]

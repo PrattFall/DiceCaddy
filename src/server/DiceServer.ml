@@ -4,6 +4,7 @@ open Cohttp
 open Cohttp_lwt_unix
 
 open DiceLib
+open DiceModels
 
 let db_info =
   Format.sprintf "dbname=%s port=%s host=%s"
