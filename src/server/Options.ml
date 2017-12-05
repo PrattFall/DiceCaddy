@@ -17,7 +17,7 @@ let get =
   in
 
   begin fun member ->
-    Parser.JSON.get_string member config
+    JSON.get_string member config
   end
 
 let api_key =
