@@ -1,6 +1,6 @@
 opam-version: "1.2"
 name: "dicecaddy"
-version: "0.0.1"
+version: "0.1"
 maintainer: " <>"
 authors: " <>"
 homepage: "https://github.com/PrattFall/DiceCaddy"
@@ -20,6 +20,6 @@ depends: [
   "lwt"
   "cohttp"
   "cohttp-lwt"
-  "ounit"
+  "ounit" {test}
   "yojson"
 ]
