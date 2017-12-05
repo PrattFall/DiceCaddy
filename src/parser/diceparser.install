@@ -5,6 +5,10 @@ lib: [
   "_build/install/default/lib/diceparser/DiceParser.cmx"
   "_build/install/default/lib/diceparser/DiceParser.cmt"
   "_build/install/default/lib/diceparser/DiceParser.ml-gen"
+  "_build/install/default/lib/diceparser/DiceParser__JSON.cmi"
+  "_build/install/default/lib/diceparser/DiceParser__JSON.cmx"
+  "_build/install/default/lib/diceparser/DiceParser__JSON.cmt"
+  "_build/install/default/lib/diceparser/JSON.ml"
   "_build/install/default/lib/diceparser/DiceParser__Parser.cmi"
   "_build/install/default/lib/diceparser/DiceParser__Parser.cmx"
   "_build/install/default/lib/diceparser/DiceParser__Parser.cmt"
@@ -13,8 +17,4 @@ lib: [
   "_build/install/default/lib/diceparser/DiceParser.cmxa"
   "_build/install/default/lib/diceparser/DiceParser.a"
   "_build/install/default/lib/diceparser/DiceParser.cmxs"
-]
-doc: [
-  "_build/install/default/doc/diceparser/README.md"
-  "_build/install/default/doc/diceparser/LICENSE"
 ]
