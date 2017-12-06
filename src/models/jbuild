@@ -1,0 +1,6 @@
+(jbuild_version 1)
+
+(library
+	((name DiceModels)
+	 (public_name dicemodels)
+	 (libraries (postgresql dicelib))))
