@@ -1,11 +1,19 @@
 open Containers
 open DiceLib
 
-type t = {
+open CCParse
+open CCParse.Infix
+
+type test_t = {
   chat_id : int;
   name : string;
   text : string;
 }
+
+type die_roll = DieRoll of int * string
+
+type t =
+  | Roll of die_roll list
 
 let make chat_id  name text =
   { chat_id; name; text; }
@@ -41,3 +49,34 @@ let parse json_string =
   |> of_json
   |> to_string
   |> Format.sprintf "%s\n"
+
+let slash = char '/'
+let comma = char ','
+let quote = char '"'
+
+let command s =
+  slash *> string s <* skip_white
+
+let trim p =
+  skip_white *> p <* skip_white
+
+let full_string =
+  let quoted p = quote *> p <* quote in
+
+  quoted (chars1_if (fun c -> c != '"'))
+
+let die =
+  U.int <*
+  skip_white >>=
+  (fun n -> full_string >>=
+  (fun w -> return (DieRoll (n, w))))
+
+let dice =
+  sep ~by:comma (trim die)
+
+let make_roll ds = return (Roll ds)
+
+let roll_command =
+  command "roll" *>
+  dice >>=
+  make_roll
