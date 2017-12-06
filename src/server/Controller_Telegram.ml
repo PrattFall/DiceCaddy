@@ -12,7 +12,7 @@ let parse_query query =
   |> Uri.of_string
   |> (flip Uri.get_query_param) "message"
   |> Containers.Option.get_or ~default:"No param 'message' supplied.\n"
-  |> Parser.TelegramMessage.parse
+  |> TelegramMessage.parse
 
 let send_response body =
   Server.respond_string ~status:`OK ~body:body ()
