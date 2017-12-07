@@ -14,7 +14,6 @@ let optimizes_by_default =
 
     let test_results =
       [ { DieResult.name = "Yup"
-        ; DieResult.total = 12
         ; DieResult.values = [ 5; 7 ]
         }
       ]
