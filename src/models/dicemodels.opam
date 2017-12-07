@@ -1,0 +1,5 @@
+maintainer: "brianpratt@fastmail.fm"
+authors: ["PrattFall"]
+build: [
+	["jbuilder" "build"]
+]
