@@ -3,6 +3,11 @@ open OUnit2
 open DiceLib
 open DiceParser
 
+let assert_equal_or_error expected input =
+  match input with
+  | Error e -> assert_failure e
+  | Ok x -> assert_equal expected x
+
 let full_string_trims_inside_contents =
   let open CCParse in
 
@@ -15,9 +20,7 @@ let full_string_trims_inside_contents =
 
     let parsed_input = parse_string TelegramMessage.full_string input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -34,9 +37,7 @@ let roll_is_parsed_correctly =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -56,9 +57,7 @@ let roll_works_on_multiple_dice =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -78,9 +77,7 @@ let roll_works_with_alternative_spacing =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -101,9 +98,7 @@ let die_side_parses_correctly =
       parse_string TelegramMessage.DieSideDescription.parse input
     in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -127,9 +122,7 @@ let die_side_parses_multiple_correctly =
       parse_string TelegramMessage.DieSideDescription.parse input
     in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -153,9 +146,7 @@ let die_side_parses_alternative_spacing =
       parse_string TelegramMessage.DieSideDescription.parse input
     in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -172,9 +163,7 @@ let die_create_is_parsed_correctly =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -191,9 +180,7 @@ let die_remove_is_parsed_correctly =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -210,9 +197,7 @@ let die_show_is_parsed_correctly =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -231,9 +216,7 @@ let die_add_side_is_parsed_correctly =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -253,9 +236,7 @@ let die_add_complex_side_is_parsed_correctly =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x    -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -279,9 +260,7 @@ let die_add_side_alternative_spacing_is_parsed_correctly =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -298,9 +277,7 @@ let die_remove_side_is_parsed_correctly =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x    -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -317,9 +294,7 @@ let die_remove_side_with_alternative_spacing_is_parsed_correctly =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x    -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -336,9 +311,7 @@ let game_create_is_parsed_correctly =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x    -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -355,9 +328,7 @@ let game_remove_is_parsed_correctly =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x    -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -374,9 +345,7 @@ let game_switch_is_parsed_correctly =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x    -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -393,9 +362,7 @@ let game_start_is_parsed_correctly =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x    -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
   title >:: test
@@ -412,9 +379,7 @@ let game_end_is_parsed_correctly =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x    -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
 
 
@@ -432,11 +397,8 @@ let game_list_dice_is_parsed_correctly =
 
     let parsed_input = TelegramMessage.parse input in
 
-    match parsed_input with
-    | Error e -> assert_failure e
-    | Ok x    -> assert_equal expected_result x
+    assert_equal_or_error expected_result parsed_input
   in
-
 
   title >:: test
 
