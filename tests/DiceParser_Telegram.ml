@@ -6,6 +6,8 @@ open DiceParser
 let full_string_trims_inside_contents =
   let open CCParse in
 
+  let title = "full strings should be trimmed before output" in
+
   let test _ =
     let expected_result = "Test" in
 
@@ -18,18 +20,14 @@ let full_string_trims_inside_contents =
     | Ok x -> assert_equal expected_result x
   in
 
-  let title = "full strings should be trimmed before output" in
-
   title >:: test
 
 let roll_is_parsed_correctly =
+  let title = "/roll command should return a Roll object with proper input" in
+
   let test _ =
     let expected_result =
-      (
-        TelegramMessage.(Roll [
-          DieRoll (1, "D20")
-        ])
-      )
+      TelegramMessage.(Roll [ DieRoll (1, "D20") ])
     in
 
     let input = "/roll 1 \"D20\"" in
@@ -41,11 +39,11 @@ let roll_is_parsed_correctly =
     | Ok x -> assert_equal expected_result x
   in
 
-  let title = "/roll command should return a Roll object with proper input" in
-
   title >:: test
 
 let roll_works_on_multiple_dice =
+  let title = "/roll command should be able to parse multiple dice at once" in
+
   let test _ =
     let expected_result =
       (TelegramMessage.(Roll [
@@ -63,11 +61,11 @@ let roll_works_on_multiple_dice =
     | Ok x -> assert_equal expected_result x
   in
 
-  let title = "/roll command should be able to parse multiple dice at once" in
-
   title >:: test
 
 let roll_works_with_alternative_spacing =
+  let title = "/roll command should be able to parse multiple dice at once" in
+
   let test _ =
     let expected_result =
       (TelegramMessage.(Roll [
@@ -85,12 +83,12 @@ let roll_works_with_alternative_spacing =
     | Ok x -> assert_equal expected_result x
   in
 
-  let title = "/roll command should be able to parse multiple dice at once" in
-
   title >:: test
 
 let die_side_parses_correctly =
   let open CCParse in
+
+  let title = "DieSideDescription.parse correctly parses input" in
 
   let test _ =
     let expected_result =
@@ -108,12 +106,12 @@ let die_side_parses_correctly =
     | Ok x -> assert_equal expected_result x
   in
 
-  let title = "DieSideDescription.parse correctly parses input" in
-
   title >:: test
 
 let die_side_parses_multiple_correctly =
   let open CCParse in
+
+  let title = "DieSideDescription.parse correctly parses multiple values" in
 
   let test _ =
     let expected_result =
@@ -134,12 +132,12 @@ let die_side_parses_multiple_correctly =
     | Ok x -> assert_equal expected_result x
   in
 
-  let title = "DieSideDescription.parse correctly parses multiple values" in
-
   title >:: test
 
 let die_side_parses_alternative_spacing =
   let open CCParse in
+
+  let title = "DieSideDescription.parse correctly parses multiple values" in
 
   let test _ =
     let expected_result =
@@ -160,11 +158,11 @@ let die_side_parses_alternative_spacing =
     | Ok x -> assert_equal expected_result x
   in
 
-  let title = "DieSideDescription.parse correctly parses multiple values" in
-
   title >:: test
 
 let die_create_is_parsed_correctly =
+  let title = "Die Create syntax is parsed correctly" in
+
   let test _ =
     let expected_result =
       TelegramMessage.(Die (DieCommand.Create "D20"))
@@ -179,11 +177,11 @@ let die_create_is_parsed_correctly =
     | Ok x -> assert_equal expected_result x
   in
 
-  let title = "Die Create syntax is parsed correctly" in
-
   title >:: test
 
 let die_remove_is_parsed_correctly =
+  let title = "Die Remove syntax is parsed correctly" in
+
   let test _ =
     let expected_result =
       TelegramMessage.(Die (DieCommand.Remove "D20"))
@@ -198,11 +196,11 @@ let die_remove_is_parsed_correctly =
     | Ok x -> assert_equal expected_result x
   in
 
-  let title = "Die Remove syntax is parsed correctly" in
-
   title >:: test
 
 let die_show_is_parsed_correctly =
+  let title = "Die Show syntax is parsed correctly" in
+
   let test _ =
     let expected_result =
       TelegramMessage.(Die (DieCommand.Show "D20"))
@@ -217,11 +215,11 @@ let die_show_is_parsed_correctly =
     | Ok x -> assert_equal expected_result x
   in
 
-  let title = "Die Show syntax is parsed correctly" in
-
   title >:: test
 
 let die_add_side_is_parsed_correctly =
+  let title = "Die Add Side syntax is parsed correctly" in
+
   let test _ =
     let expected_result =
       (TelegramMessage.(Die (DieCommand.AddSide ("D20", (DieSide.make 1 [
@@ -238,11 +236,11 @@ let die_add_side_is_parsed_correctly =
     | Ok x -> assert_equal expected_result x
   in
 
-  let title = "Die Add Side syntax is parsed correctly" in
-
   title >:: test
 
 let die_add_complex_side_is_parsed_correctly =
+  let title = "Die Add Side syntax is parsed correctly with complex side" in
+
   let test _ =
     let expected_result =
       (TelegramMessage.(Die (DieCommand.AddSide ("Weird", (DieSide.make 1 [
@@ -257,14 +255,16 @@ let die_add_complex_side_is_parsed_correctly =
 
     match parsed_input with
     | Error e -> assert_failure e
-    | Ok x -> assert_equal expected_result x
+    | Ok x    -> assert_equal expected_result x
   in
-
-  let title = "Die Add Side syntax is parsed correctly with complex side" in
 
   title >:: test
 
 let die_add_side_alternative_spacing_is_parsed_correctly =
+  let title =
+    "Die Add Side syntax is parsed correctly with alternative spacing"
+  in
+
   let test _ =
     let expected_result =
       (TelegramMessage.(Die (DieCommand.AddSide ("Weird", (DieSide.make 1 [
@@ -284,13 +284,11 @@ let die_add_side_alternative_spacing_is_parsed_correctly =
     | Ok x -> assert_equal expected_result x
   in
 
-  let title =
-    "Die Add Side syntax is parsed correctly with alternative spacing"
-  in
-
   title >:: test
 
 let die_remove_side_is_parsed_correctly =
+  let title = "Die Remove Side syntax is parsed correctly" in
+
   let test _ =
     let expected_result =
       TelegramMessage.(Die (DieCommand.RemoveSide ("Test", 1, 1)))
@@ -305,11 +303,11 @@ let die_remove_side_is_parsed_correctly =
     | Ok x    -> assert_equal expected_result x
   in
 
-  let title = "Die Remove Side syntax is parsed correctly" in
-
   title >:: test
 
 let die_remove_side_with_alternative_spacing_is_parsed_correctly =
+  let title = "Die Remove Side syntax is parsed correctly" in
+
   let test _ =
     let expected_result =
       TelegramMessage.(Die (DieCommand.RemoveSide ("Test", 1, 1)))
@@ -324,11 +322,11 @@ let die_remove_side_with_alternative_spacing_is_parsed_correctly =
     | Ok x    -> assert_equal expected_result x
   in
 
-  let title = "Die Remove Side syntax is parsed correctly" in
-
   title >:: test
 
 let game_create_is_parsed_correctly =
+  let title = "Game Create syntax is parsed correctly" in
+
   let test _ =
     let expected_result =
       TelegramMessage.(Game (GameCommand.Create "Test"))
@@ -343,11 +341,11 @@ let game_create_is_parsed_correctly =
     | Ok x    -> assert_equal expected_result x
   in
 
-  let title = "Game Create syntax is parsed correctly" in
-
   title >:: test
 
 let game_remove_is_parsed_correctly =
+  let title = "Game Remove syntax is parsed correctly" in
+
   let test _ =
     let expected_result =
       TelegramMessage.(Game (GameCommand.Remove "Test"))
@@ -362,11 +360,11 @@ let game_remove_is_parsed_correctly =
     | Ok x    -> assert_equal expected_result x
   in
 
-  let title = "Game Remove syntax is parsed correctly" in
-
   title >:: test
 
 let game_switch_is_parsed_correctly =
+  let title = "Game Switch syntax is parsed correctly" in
+
   let test _ =
     let expected_result =
       TelegramMessage.(Game (GameCommand.Switch "Test"))
@@ -381,11 +379,11 @@ let game_switch_is_parsed_correctly =
     | Ok x    -> assert_equal expected_result x
   in
 
-  let title = "Game Switch syntax is parsed correctly" in
-
   title >:: test
 
 let game_start_is_parsed_correctly =
+  let title = "Game Start syntax is parsed correctly" in
+
   let test _ =
     let expected_result =
       TelegramMessage.(Game GameCommand.Start)
@@ -400,11 +398,11 @@ let game_start_is_parsed_correctly =
     | Ok x    -> assert_equal expected_result x
   in
 
-  let title = "Game Start syntax is parsed correctly" in
-
   title >:: test
 
 let game_end_is_parsed_correctly =
+  let title = "Game End syntax is parsed correctly" in
+
   let test _ =
     let expected_result =
       TelegramMessage.(Game GameCommand.End)
@@ -419,11 +417,12 @@ let game_end_is_parsed_correctly =
     | Ok x    -> assert_equal expected_result x
   in
 
-  let title = "Game End syntax is parsed correctly" in
 
   title >:: test
 
 let game_list_dice_is_parsed_correctly =
+  let title = "Game List Dice syntax is parsed correctly" in
+
   let test _ =
     let expected_result =
       TelegramMessage.(Game GameCommand.ListDice)
@@ -438,7 +437,6 @@ let game_list_dice_is_parsed_correctly =
     | Ok x    -> assert_equal expected_result x
   in
 
-  let title = "Game List Dice syntax is parsed correctly" in
 
   title >:: test
 
