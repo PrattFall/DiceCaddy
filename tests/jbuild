@@ -2,7 +2,7 @@
 
 (executable
        ((name test)
-        (libraries (containers postgresql ounit dicelib))))
+        (libraries (containers postgresql ounit dicelib diceparser))))
 
 (alias
        ((name    runtest)

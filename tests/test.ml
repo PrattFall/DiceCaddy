@@ -22,4 +22,5 @@ let () =
        DieFace.tests;
        DieFaceGroup.tests;
        Die.tests;
+       DiceParser_Telegram.tests;
      ])
