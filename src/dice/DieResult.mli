@@ -1,6 +1,5 @@
 type t =
   { name : string
-  ; total: int
   ; values : int list
   }
 

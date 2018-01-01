@@ -7,9 +7,10 @@ let singleton name range =
   [ DieFaceValue.make name range ]
 
 let num_values side =
-  List.fold_left (fun acc x ->
-      acc + (Range.total (DieFaceValue.value x))
-  ) 0 side
+  List.fold_left
+    (fun acc x -> acc + (Range.total (DieFaceValue.value x)))
+    0
+    side
 
 let equals face1 face2 =
   List.map2 DieFaceValue.equals face1 face2
@@ -21,13 +22,11 @@ let contains value face =
     false
     face
 
-let roll side =
-  side
-  |> List.map DieFaceValue.roll
-  |> DieResultGroup.(List.fold_left (flip add) empty)
+let roll =
+  List.map DieFaceValue.roll %>
+  DieResultGroup.(List.fold_left (flip add) empty)
 
-let to_string face =
-  face
-  |> List.map DieFaceValue.to_string
-  |> String.concat ", "
-  |> Format.sprintf "[%s]"
+let to_string =
+  List.map DieFaceValue.to_string %>
+  String.concat ", " %>
+  Format.sprintf "[%s]"

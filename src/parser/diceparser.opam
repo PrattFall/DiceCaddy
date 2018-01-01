@@ -3,5 +3,5 @@ version: "0.1"
 maintainer: "brianpratt@fastmail.fm"
 authors: ["PrattFall"]
 build: [
-	["jbuilder" "build" "Main.exe"]
+	["jbuilder" "build"]
 ]

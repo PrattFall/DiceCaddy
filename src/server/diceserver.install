@@ -1,0 +1,11 @@
+lib: [
+  "_build/install/default/lib/diceserver/META" {"META"}
+  "_build/install/default/lib/diceserver/opam" {"opam"}
+]
+bin: [
+  "_build/install/default/bin/dice_server" {"dice_server"}
+]
+doc: [
+  "_build/install/default/doc/diceserver/README.md"
+  "_build/install/default/doc/diceserver/LICENSE"
+]

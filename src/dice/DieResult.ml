@@ -1,18 +1,16 @@
 type t =
   { name : string
-  ; total: int
   ; values : int list
   }
 
 let name dr = dr.name
 
-let total dr = dr.total
+let total dr = List.fold_left (+) 0 dr.values
 
 let values dr = dr.values
 
 let make name first_total =
   { name = name
-  ; total = first_total
   ; values = [ first_total ]
   }
 
@@ -29,11 +27,10 @@ let to_string result =
     |> String.concat ", "
   in
 
-  show_value result.total ^ " " ^ result.name ^ " (" ^ values ^ ")"
+  show_value (total result) ^ " " ^ result.name ^ " (" ^ values ^ ")"
 
 let add value result =
-  { result with total  = result.total + value
-              ; values = value :: result.values
+  { result with values = value :: result.values
   }
 
 let combine result1 result2 =
@@ -43,13 +40,8 @@ let combine result1 result2 =
       |> List.sort compare
     in
 
-    let new_total =
-      List.fold_left (+) 0 new_values
-    in
-
     { name   = result1.name
     ; values = new_values
-    ; total  = new_total
     }
   in
 

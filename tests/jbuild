@@ -1,10 +1,10 @@
 (jbuild_version 1)
 
 (executable
-	((name test)
-	 (libraries (containers postgresql ounit dicelib))))
+       ((name test)
+        (libraries (containers postgresql ounit dicelib diceparser))))
 
-(install
-	((section bin)
-	 (files ((test.exe as test_dice_server)))))
-
+(alias
+       ((name    runtest)
+        (deps    (test.exe))
+        (action  (run ${<}))))
