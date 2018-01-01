@@ -1,3 +1,6 @@
+open Containers
+open Containers.Fun
+
 module DieResultMap = Map.Make(String)
 
 type t = DieResult.t DieResultMap.t
@@ -28,19 +31,17 @@ let add new_result results =
 let singleton result =
   add result empty
 
-let fold f init xs =
-  DieResultMap.fold (fun _ x y -> f x y) xs init
+let fold f =
+  flip (DieResultMap.fold (fun _ x y -> f x y))
 
-let combine rg1 rg2 =
-  fold (fun x acc -> add x acc) rg1 rg2
+let combine =
+  fold (fun x acc -> add x acc)
 
-let to_list results =
-  results
-  |> fold (fun x acc -> x :: acc) []
-  |> List.sort (fun a b -> compare (DieResult.name a) (DieResult.name b))
+let to_list =
+  fold (fun x acc -> x :: acc) [] %>
+  List.sort (fun a b -> compare (DieResult.name a) (DieResult.name b))
 
-let to_string results =
-  results
-  |> to_list
-  |> List.map DieResult.to_string
-  |> String.concat ", "
+let to_string =
+  to_list %>
+  List.map DieResult.to_string %>
+  String.concat ", "

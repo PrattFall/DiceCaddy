@@ -1,6 +1,9 @@
-module P = Postgresql
+open Containers
+open Containers.Fun
 
 open DiceLib
+
+module P = Postgresql
 
 let sql_error e =
   (Message.SQLMessage e)
@@ -41,23 +44,19 @@ let num_columns result = result#nfields
 
 let num_rows result = result#ntuples
 
-let start_transaction conn =
-  conn
-  |> prepare "begin_transaction" "BEGIN;"
-  |> exec_prepared "begin_transaction" ~params:[||]
-  |> ignore
+let generic_transaction name command =
+  prepare name command %>
+  exec_prepared name ~params:[||] %>
+  ignore
 
-let end_transaction conn =
-  conn
-  |> prepare "commit_transaction" "COMMIT;"
-  |> exec_prepared "commit_transaction" ~params:[||]
-  |> ignore
+let start_transaction =
+  generic_transaction "begin_transaction" "BEGIN;"
 
-let rollback_transaction conn =
-  conn
-  |> prepare "rollback_transaction" "ROLLBACK;"
-  |> exec_prepared "rollback_transaction" ~params:[||]
-  |> ignore
+let end_transaction =
+  generic_transaction "commit_transaction" "COMMIT;"
+
+let rollback_transaction =
+  generic_transaction "rollback_transaction" "ROLLBACK;"
 
 let wrap_transaction func conn : P.result QueryResult.t =
   start_transaction conn;

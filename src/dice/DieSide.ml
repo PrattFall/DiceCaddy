@@ -12,13 +12,13 @@ let num side = side.num
 
 let num_values side = (DieFace.num_values side.value) * side.num
 
-let simplify_list faces =
+let simplify_list =
   let same_val x y =
     DieFace.equals x.value y.value
   in
 
   let exists_in xs x =
-    xs |> List.fold_left (fun acc y -> acc || same_val x y) false
+    List.fold_left (fun acc y -> acc || same_val x y) false xs
   in
 
   let update_if_equals x y =
@@ -33,8 +33,7 @@ let simplify_list faces =
     else x :: acc
   in
 
-  faces
-  |> List.fold_left update_existing_or_add []
+  List.fold_left update_existing_or_add []
 
 let roll side =
   let rec roll_iter result_group face iter =

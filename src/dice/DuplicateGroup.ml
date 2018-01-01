@@ -37,7 +37,7 @@ module Make = functor (Equal : Dup_Equal) -> struct
     then { group with length = group.length + 1 }
     else group
 
-  let simplify_list groups =
+  let simplify_list =
     let exists_in xs x =
       List.fold_left (fun acc y -> acc || same x y) false xs
     in
@@ -48,7 +48,7 @@ module Make = functor (Equal : Dup_Equal) -> struct
       else x :: acc
     in
 
-    List.fold_left update_existing_or_add [] groups
+    List.fold_left update_existing_or_add []
 
   let get_all group =
     List.replicate group.length group.value

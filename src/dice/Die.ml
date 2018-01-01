@@ -1,4 +1,5 @@
 open Containers
+open Containers.Fun
 
 type t =
   { name  : string
@@ -17,7 +18,7 @@ let faces die = die.faces
 let add_face face die =
   { die with faces =  DieFaceGroup.simplify_list (face :: die.faces) }
 
-let roll d =
+let roll =
   let roll_random_element_from_list xs =
     let open Message in
     let open DieResultMessage in
@@ -27,6 +28,6 @@ let roll d =
     | None -> Error (DieResultMessage ResultCouldNotBeCalculated)
   in
 
-  faces d
-  |> List.flat_map DieFaceGroup.get_all
-  |> roll_random_element_from_list
+  faces %>
+  List.flat_map DieFaceGroup.get_all %>
+  roll_random_element_from_list
